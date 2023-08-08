@@ -4,7 +4,6 @@ The AIMER is a computational software package for identifying imprinting-like al
 Release AIMER 0.1  
 ==========================  
 # Install AIMER 0.1  
-wget https://github.com/ZhaoLab-TMU/AIMER/blob/main/AIMER-0.1.tar.gz  
 pip3 install AIMER-0.1.tar.gz  
   
 # Required libraries  
