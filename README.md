@@ -34,9 +34,9 @@ Commands:
   bin_extension       
   Merging bins from the output file of get_bin step    
   get_amr             
-  Used to calculate the probability of imprinting-like AMR and
-                   add annotations, users can also exclude unwanted results,
-                   such as tissue-specific genes    
+  Used to calculate the probability of imprinting-like AMR and。
+                   add annotations, users can also exclude unwanted results,  
+                   such as tissue-specific genes      
   help (?)         give detailed help on a specific sub-command  
   
 ==========================  
