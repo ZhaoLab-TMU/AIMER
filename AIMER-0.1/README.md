@@ -80,7 +80,8 @@ Usage:
     Usage: AIMER bin_extension <-i bin.bed> <-g GapLength> <-r Ratio> <-d Diff_Score> <-c CG> <-o extended.bed>  
       
     For example:   
-    AIMER bin_extension -i bin.bed -r 0.4 -d 0.8 -g 600 -c 10 -o extended.bed  
+    
+        AIMER bin_extension -i bin.bed -r 0.4 -d 0.8 -g 600 -c 10 -o extended.bed  
   
 Merging bins from the output file of get_bin step  
   
@@ -115,6 +116,7 @@ Step 3, The get_amr tool can be used to evaluate the probability of the regions 
   
 Usage:  
     For example:  
+    
         AIMER get_amr -i extended.bed  
         AIMER get_amr -i extended.bed -g mm9.refGene.gtf  
         AIMER get_amr -i extended.bed -k known_dmr.bed  
