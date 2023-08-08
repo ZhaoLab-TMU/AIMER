@@ -28,12 +28,16 @@ Options:
   -h, --help  show this help message and exit  
 
 Commands:  
-  get_bin            Using a sliding window to slice the genome into bins  
-  bin_extension      Merging bins from the output file of get_bin step  
-  get_amr            Used to calculate the probability of imprinting-like AMR and
+  get_bin             
+  Using a sliding window to slice the genome into bins    
+  bin_extension       
+  Merging bins from the output file of get_bin step    
+  get_amr             
+  Used to calculate the probability of imprinting-like AMR and
                    add annotations, users can also exclude unwanted results,
-                   such as tissue-specific genes  
-  help (?)           give detailed help on a specific sub-command  
+                   such as tissue-specific genes    
+  help (?)             
+  give detailed help on a specific sub-command  
   
 ==========================  
 Step 1, get_bin step utilize a sliding window to split the chromosome into continuous bins, then the reads are divided into two groups by the EM algorithm in each bin. The output file of this step contains information such as the diff_score in methylation levels between the two groups.  
