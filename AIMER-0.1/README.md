@@ -79,7 +79,7 @@ Usage:
       
     For example: AIMER bin_extension -i bin.bed -r 0.4 -d 0.8 -g 600 -c 10 -o extended.bed  
   
-        Merging bins from the output file of get_bin step  
+Merging bins from the output file of get_bin step  
   
 Options:  
   --version             show program's version number and exit 
