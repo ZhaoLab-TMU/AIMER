@@ -22,8 +22,10 @@ Usage
 Main program contains 3 sub-command, get_bin, bin_extension and get_amr, if you want to find out how to use each sub-command please use AIMER <sub-command> --help, such as AIMER get_bin --help.  
   
 Usage:  
+’‘’
     AIMER COMMAND [ARGS...]  
     AIMER help COMMAND  
+    ‘’‘
   
 Options:  
   -h, --help  show this help message and exit  
@@ -34,9 +36,9 @@ Commands:
   bin_extension       
   Merging bins from the output file of get_bin step    
   get_amr             
-  Used to calculate the probability of imprinting-like AMR and  
-                   add annotations, users can also exclude unwanted results,    
-                   such as tissue-specific genes      
+  Used to calculate the probability of imprinting-like AMR and
+                   add annotations, users can also exclude unwanted results, 
+                   such as tissue-specific genes   
   help (?)         give detailed help on a specific sub-command  
   
 ==========================  
