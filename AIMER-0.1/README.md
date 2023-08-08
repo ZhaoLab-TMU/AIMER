@@ -36,8 +36,7 @@ Commands:
   Used to calculate the probability of imprinting-like AMR and
                    add annotations, users can also exclude unwanted results,
                    such as tissue-specific genes    
-  help (?)             
-  give detailed help on a specific sub-command  
+  help (?)         give detailed help on a specific sub-command  
   
 ==========================  
 Step 1, get_bin step utilize a sliding window to split the chromosome into continuous bins, then the reads are divided into two groups by the EM algorithm in each bin. The output file of this step contains information such as the diff_score in methylation levels between the two groups.  
