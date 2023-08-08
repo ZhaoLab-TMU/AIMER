@@ -41,9 +41,9 @@ Commands:
 ==========================  
 Step 1, get_bin step utilize a sliding window to split the chromosome into continuous bins, then the reads are divided into two groups by the EM algorithm in each bin. The output file of this step contains information such as the diff_score in methylation levels between the two groups.  
   
-## Usage:  
+### Usage:  
     Usage: AIMER get_bin <-i filename> <-g ref_genome> <-b 300> <-c 10> <-o output>  
-    For example:   
+For example:   
   
         AIMER get_bin -i input.bam -b 300 -c 10 -g mm9.fa -o bin.bed  
   
@@ -78,9 +78,9 @@ Options:
 ==========================  
 Step 2, bin_extension step uses the output file from the get_bin to connect the short bin to the long contiguous region. Only reasonable and adjacent bins can be merged into a region.  
   
-## Usage:  
+### Usage:  
     Usage: AIMER bin_extension <-i bin.bed> <-g GapLength> <-r Ratio> <-d Diff_Score> <-c CG> <-o extended.bed>  
-    For example:   
+For example:   
     
         AIMER bin_extension -i bin.bed -r 0.4 -d 0.8 -g 600 -c 10 -o extended.bed  
   
