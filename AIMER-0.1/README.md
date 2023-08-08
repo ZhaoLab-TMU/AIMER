@@ -79,7 +79,8 @@ Step 2, bin_extension step uses the output file from the get_bin to connect the 
 Usage:  
     Usage: AIMER bin_extension <-i bin.bed> <-g GapLength> <-r Ratio> <-d Diff_Score> <-c CG> <-o extended.bed>  
       
-    For example: AIMER bin_extension -i bin.bed -r 0.4 -d 0.8 -g 600 -c 10 -o extended.bed  
+    For example:   
+    AIMER bin_extension -i bin.bed -r 0.4 -d 0.8 -g 600 -c 10 -o extended.bed  
   
 Merging bins from the output file of get_bin step  
   
@@ -122,7 +123,7 @@ Usage:
         AIMER get_amr -i extended.bed -g mm9.refGene.gtf -k known_dmr.bed -e gene.list  
   
   
-        Used to calculate the probability of imprinting-like AMR and add
+Used to calculate the probability of imprinting-like AMR and add
 annotations  
   
 Options:  
