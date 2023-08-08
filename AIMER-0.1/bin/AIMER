@@ -1,0 +1,271 @@
+#!/usr/bin/python
+#cython: language_level=3
+
+import sys,os,re,random,math,logging,time
+import optparse
+import textwrap
+import AIMER as AIMER
+global logfhd
+
+
+class Subcommand(object):
+    """A subcommand of a root command-line application that may be
+    invoked by a SubcommandOptionParser.
+    """
+    def __init__(self, name, parser, help='', aliases=()):
+        """Creates a new subcommand. name is the primary way to invokea
+        the subcommand; aliases are alternate names. parser is an
+        OptionParser responsible for parsing the subcommand's options.
+        help is a short description of the command."""
+        self.name = name
+        self.parser = parser
+        self.aliases = aliases
+        self.help = help
+
+class SubcommandsOptionParser(optparse.OptionParser):
+    """A variant of OptionParser that parses subcommands and their
+    arguments.
+    """
+    
+    # A singleton command used to give help on other subcommands.
+    _HelpSubcommand = Subcommand('help', optparse.OptionParser(),
+        help='give detailed help on a specific sub-command',
+        aliases=('?',))
+    
+    def __init__(self, *args, **kwargs):
+        """Create a new subcommand-aware option parser. All of the
+        options to OptionParser.__init__ are supported in addition
+        to subcommands, a sequence of Subcommand objects.
+        """
+        # The subcommand array, with the help command included.
+        self.subcommands = list(kwargs.pop('subcommands', []))
+        self.subcommands.append(self._HelpSubcommand)
+        
+
+        # A more helpful default usage.
+        if 'usage' not in kwargs:
+            kwargs['usage'] = """
+    %prog COMMAND [ARGS...]
+    %prog help COMMAND"""
+        
+        # Super constructor.
+        optparse.OptionParser.__init__(self, *args, **kwargs)
+        
+        # Adjust the help-visible name of each subcommand.
+        for subcommand in self.subcommands:
+            subcommand.parser.prog = '%s %s' % \
+                    (self.get_prog_name(), subcommand.name)
+        
+        # Our root parser needs to stop on the first unrecognized argument.  
+        self.disable_interspersed_args()
+    
+    # Add the list of subcommands to the help message.
+    def format_help(self, formatter=None):
+        # Get the original help message, to which we will append.
+        out = optparse.OptionParser.format_help(self, formatter)
+        if formatter is None:
+            formatter = self.formatter
+        
+        # Subcommands header.
+        result = ["\n"]
+        result.append(formatter.format_heading('Commands'))
+        formatter.indent()
+        
+        # Generate the display names (including aliases).
+        # Also determine the help position.
+        disp_names = []
+        help_position = 0
+        for subcommand in self.subcommands:
+            name = subcommand.name
+            if subcommand.aliases:
+                name += ' (%s)' % ', '.join(subcommand.aliases)
+            disp_names.append(name)
+                
+            # Set the help position based on the max width.
+            proposed_help_position = len(name) + formatter.current_indent + 2
+            if proposed_help_position <= formatter.max_help_position:
+                help_position = max(help_position, proposed_help_position)        
+        
+        # Add each subcommand to the output.
+        for subcommand, name in zip(self.subcommands, disp_names):
+            # Lifted directly from optparse.py.
+            name_width = help_position - formatter.current_indent - 2
+            if len(name) > name_width:
+                name = "%*s%s\n" % (formatter.current_indent, "", name)
+                indent_first = help_position
+            else:
+                name = "%*s%-*s  " % (formatter.current_indent, "",
+                                      name_width, name)
+                indent_first = 0
+            result.append(name)
+            help_width = formatter.width - help_position
+            help_lines = textwrap.wrap(subcommand.help, help_width)
+            result.append("%*s%s\n" % (indent_first, "", help_lines[0]))
+            result.extend(["%*s%s\n" % (help_position, "", line)
+                           for line in help_lines[1:]])
+        formatter.dedent()
+        
+        # Concatenate the original help message with the subcommand
+        # list.
+        return out + "".join(result)
+    
+    def _subcommand_for_name(self, name):
+        """Return the subcommand in self.subcommands matching the
+        given name. The name may either be the name of a subcommand or
+        an alias. If no subcommand matches, returns None.
+        """
+        for subcommand in self.subcommands:
+            if name == subcommand.name or \
+               name in subcommand.aliases:
+                return subcommand
+        return None
+    
+    def parse_args(self, a=None, v=None):
+        """Like OptionParser.parse_args, but returns these four items:
+        - options: the options passed to the root parser
+        - subcommand: the Subcommand object that was invoked
+        - suboptions: the options passed to the subcommand parser
+        - subargs: the positional arguments passed to the subcommand
+        """  
+        options, args = optparse.OptionParser.parse_args(self, a, v)
+        
+        if not args:
+            # No command given.
+            self.print_help()
+            self.exit()
+        else:
+            cmdname = args.pop(0)
+            if cmdname.startswith('-'):
+                parser.error('unknown option ' + cmdname + ', please read the usage')
+            else:
+                subcommand = self._subcommand_for_name(cmdname)
+                if not subcommand:
+                    parser.error('unknown command ' + cmdname + ', please read the usage')
+        
+        suboptions, subargs = subcommand.parser.parse_args(args)
+
+        if subcommand is self._HelpSubcommand:
+            if subargs:
+                # particular
+                cmdname = subargs[0]
+                helpcommand = self._subcommand_for_name(cmdname)
+                helpcommand.parser.print_help()
+                self.exit()
+            else:
+                # general
+                self.print_help()
+                self.exit()
+        
+        return options, subcommand, suboptions, subargs
+
+
+if __name__ == '__main__':
+    ########    step 1 get bin
+    step_1_usage = '''
+    Usage: %prog <-i filename> <-g ref_genome> <-b 300> <-c 10> <-o output>
+    For example: %prog -i input.bam -b 300 -c 10 -g mm9.fa -o bin.bed'''
+    step_1_description = "\tUsing sliding window to slice the genome into bins in this step"
+    step_1 = Subcommand('get_bin',
+                    optparse.OptionParser(usage=step_1_usage,description=step_1_description,add_help_option=True,
+                    version="%prog 0.1"), 'Using a sliding window to slice the genome into bins')
+    
+    step_1.parser.add_option("-i","--input",dest="filename",type="str",
+                    help="Coordinate sorted input file name, accept bam or sam format ")
+    step_1.parser.add_option("-b","--bin",dest="BinLength",type="int",default="300",
+                    help="Length of each bin, default is 300")
+    step_1.parser.add_option("-s","--samtools_path",dest="samtools_path",type="str",
+                    help="The path of samtools, if samtools is already in the environment variable, it can be ignored")
+    step_1.parser.add_option("-c","--coverage",dest="coverage_cutoff",type="int",default="10",
+                    help="Number of reads in each bin, default is 10 [n > 10]")
+    step_1.parser.add_option("-g","--genome",dest="genome",type="str",
+                    help="The reference genenome")
+    step_1.parser.add_option("-o","--output",dest="output",type="str",default = "bin.bed",
+                    help="Output bin file, default is bin.bed")
+
+
+    ########    step 2 bin extension
+    step_2_usage = '''
+    Usage: %prog <-i bin.bed> <-g GapLength> <-r Ratio> <-d Diff_Score> <-c CG> <-o extended.bed>
+    For example: %prog -i bin.bed -r 0.4 -d 0.8 -g 600 -c 10 -o extended.bed'''
+    step_2_description = "\tMerging bins from the output file of get_bin step"
+    step_2 = Subcommand('bin_extension',
+                    optparse.OptionParser(usage=step_2_usage,description=step_2_description,add_help_option=True,
+                    version="%prog 0.1"), 'Merging bins from the output file of get_bin step')
+    step_2.parser.add_option("-i","--input",dest="input_bin",type="str",
+                    help="The input bin bed file, it is the output of get_bin step ")
+    step_2.parser.add_option("-r","--ratio",dest="ratio",type="float",default="0.4",
+                    help="The proportion of minor part, min(m1,m2)/(m1+m2), default is 0.4 [n >= 0.4]")
+    step_2.parser.add_option("-d","--diff",dest="diff_score",type="float",default="0.7",
+                    help="The diff score cutoff between the two part, default is 0.7 [n >= 0.7]")
+    step_2.parser.add_option("-g","--gap",dest="Gap",type="int",default="600",
+                    help="The gap length to extend a merged AMR, default is 600 [n <= 600]")
+    step_2.parser.add_option("-c","--cg",dest="CG",type="int",default="10",
+                    help="The cg number of sigle bin, default is 10 [n >= 10]")
+    step_2.parser.add_option("-o","--output",dest="output",type="str",default="extended.bed",
+                    help="The output of extended bin file, default is extended.bed")
+
+
+    ########    step 3 bin extension
+    step_3_description = "\tUsed to calculate the probability of imprinting-like AMR and add annotations"
+    step_3_usage = '''
+    For example:
+        %prog -i extended.bed
+        %prog -i extended.bed -g mm9.refGene.gtf
+        %prog -i extended.bed -k known_dmr.bed
+        %prog -i extended.bed -g mm9.refGene.gtf -e gene.list
+        %prog -i extended.bed -g mm9.refGene.gtf -k known_dmr.bed
+        %prog -i extended.bed -g mm9.refGene.gtf -k known_dmr.bed -e gene.list
+        '''
+    step_3 = Subcommand('get_amr',
+                    optparse.OptionParser(usage=step_3_usage,description=step_3_description,add_help_option=True,
+                    version="%prog 0.1"), 'Used to calculate the probability of imprinting-like AMR and add annotations, users can also exclude unwanted results, such as tissue-specific genes')
+
+    step_3.parser.add_option("-i","--input",dest="filename",type="str",
+                    help="The output of extended region bed of bin_extension step")
+    step_3.parser.add_option("-t","--tss",dest="tss",type="str",default = "3000,3000",
+                    help="The size of TSS, default is +/- 3k")
+    step_3.parser.add_option("-g","--gtf",dest="gtf",type="str",
+                    help="If you want to add TSS information or exclude any gene, please add this option")
+    step_3.parser.add_option("-e","--excluded_list",dest="excluded_list",type="str",
+                    help="Provide a gene list to enforce exclude that from the output files, each line is a single gene, only applies when used with -g option")
+    step_3.parser.add_option("-k","--known_dmr",dest="known_dmr",type="str",
+                    help="Known dmr bed file, which must contain chr, start, end and name four columns, the first line need start with \"#\" if the bed file contain header line")
+    step_3.parser.add_option("-o","--output",dest="output",type="str",default = "AMR",
+                    help="out put file name prefix, default output name is AMR.anno.bed")
+
+    #########
+    
+    parser = SubcommandsOptionParser(
+        subcommands = (step_1, step_2, step_3)
+    )
+    # parser.add_option('-O', '--output_dir', dest='output_dir',
+    #                   help='out put directory, default is current directory',type="str",default = os.getcwd(),metavar='PATH')
+
+    options, subcommand, suboptions, subargs = parser.parse_args()
+
+    if subcommand is step_1:
+        #print(suboptions)
+        if suboptions.filename and suboptions.genome:
+            AIMER.get_bin.get_mixingRatio(suboptions)
+        else:
+            if not suboptions.filename and suboptions.genome:
+                subcommand.parser.error('no input sorted bam/sam file, please read the usage')
+            elif not suboptions.genome and suboptions.filename:
+                subcommand.parser.error('no ref genome file, please read the usage')
+            else:
+                subcommand.parser.error('no input sorted bam/sam file and ref genome , please read the usage')
+
+    elif subcommand is step_2:
+        #print(suboptions)
+        if suboptions.input_bin:
+            AIMER.bin_extension.scan(suboptions)
+        else:
+            subcommand.parser.error('no input file, please read the usage')
+
+    elif subcommand is step_3:
+        # print(suboptions)
+        # print(options)
+        if suboptions.filename:
+            AIMER.get_amr.amr(suboptions,subcommand.parser)
+        else:
+            subcommand.parser.error('no input file, please read the usage')
