@@ -22,10 +22,10 @@ Usage
 Main program contains 3 sub-command, get_bin, bin_extension and get_amr, if you want to find out how to use each sub-command please use AIMER <sub-command> --help, such as AIMER get_bin --help.  
   
 Usage:  
-’‘’
+```
     AIMER COMMAND [ARGS...]  
     AIMER help COMMAND  
-    ‘’‘
+    ```
   
 Options:  
   -h, --help  show this help message and exit  
