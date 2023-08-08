@@ -41,9 +41,11 @@ Step 1, get_bin step utilize a sliding window to split the chromosome into conti
   
 Usage:  
     Usage: AIMER get_bin <-i filename> <-g ref_genome> <-b 300> <-c 10> <-o output>  
-    For example: AIMER get_bin -i input.bam -b 300 -c 10 -g mm9.fa -o bin.bed  
+    For example:   
   
-        Using sliding window to slice the genome into bins in this step  
+        AIMER get_bin -i input.bam -b 300 -c 10 -g mm9.fa -o bin.bed  
+  
+Using sliding window to slice the genome into bins in this step  
   
 Options:  
   --version             show program's version number and exit  
