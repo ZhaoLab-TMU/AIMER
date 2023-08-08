@@ -25,7 +25,7 @@ Usage:
 ```
     AIMER COMMAND [ARGS...]  
     AIMER help COMMAND  
-    ```
+```
   
 Options:  
   -h, --help  show this help message and exit  
