@@ -30,11 +30,11 @@ Options:
   -h, --help  show this help message and exit  
 
 Commands:  
-  **get_bin**             
+  ***get_bin***             
   Using a sliding window to slice the genome into bins      
-  **bin_extension**       
+  ***bin_extension***       
   Merging bins from the output file of get_bin step      
-  **get_amr**             
+  ***get_amr***             
   Used to calculate the probability of imprinting-like AMR and add annotations, users can also exclude unwanted results, such as tissue-specific genes        
   help (?)  Give detailed help on a specific sub-command  
 
@@ -51,27 +51,27 @@ For example:
 Using sliding window to slice the genome into bins in this step  
   
 Options:  
-  --version             show program's version number and exit  
+--version             show program's version number and exit  
     
-  -h, --help            show this help message and exit  
+-h, --help            show this help message and exit  
     
-  -i FILENAME, --input=FILENAME  
-                        Coordinate sorted input file name, accept bam or sam format  
+-i FILENAME, --input=FILENAME  
+                      Coordinate sorted input file name, accept bam or sam format  
                           
-  -b BINLENGTH, --bin=BINLENGTH  
-                        Length of each bin, default is 300  
+-b BINLENGTH, --bin=BINLENGTH  
+                      Length of each bin, default is 300  
                           
-  -s SAMTOOLS_PATH, --samtools_path=SAMTOOLS_PATH  
-                        The path of samtools, if samtools is already in the  environment variable, it can be ignored  
+-s SAMTOOLS_PATH, --samtools_path=SAMTOOLS_PATH  
+                      The path of samtools, if samtools is already in the  environment variable, it can be ignored  
                           
-  -c COVERAGE_CUTOFF, --coverage=COVERAGE_CUTOFF  
-                        Number of reads in each bin, default is 10 [n > 10] 
+-c COVERAGE_CUTOFF, --coverage=COVERAGE_CUTOFF  
+                      Number of reads in each bin, default is 10 [n > 10] 
                           
-  -g GENOME, --genome=GENOME  
-                        The reference genenome  
+-g GENOME, --genome=GENOME  
+                      The reference genenome  
                           
-  -o OUTPUT, --output=OUTPUT  
-                        Output bin file, default is bin.bed  
+-o OUTPUT, --output=OUTPUT  
+                      Output bin file, default is bin.bed  
                           
 
 ## Step 2  bin_extension 
