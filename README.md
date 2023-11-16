@@ -27,9 +27,7 @@ Usage:
 ```
   
 Options:  
-  -h, --help  
-  
-  Show this help message and exit.  
+  -h, --help  Show this help message and exit.  
 
 Commands:  
   ***get_bin***             
@@ -53,13 +51,9 @@ For example:
 Using sliding window to slice the genome into bins in this step  
   
 Options:  
---version    
-
-Show program's version number and exit.  
+--version    Show program's version number and exit.  
     
--h, --help    
-
-Show this help message and exit.  
+-h, --help    Show this help message and exit.  
     
 -i FILENAME, --input=FILENAME  
 
@@ -98,13 +92,9 @@ For example:
 Merging bins from the output file of get_bin step  
   
 Options:  
-  --version             
-  
-  Show program's version number and exit. 
+  --version             Show program's version number and exit. 
     
-  -h, --help            
-  
-  Show this help message and exit.  
+  -h, --help            Show this help message and exit.  
     
   -i INPUT_BIN, --input=INPUT_BIN
   
@@ -149,13 +139,9 @@ Used to calculate the probability of imprinting-like AMR and add
 annotations  
   
 Options:  
-  --version             
-  
-  Show program's version number and exit.  
+  --version             Show program's version number and exit.  
     
-  -h, --help            
-  
-  Show this help message and exit.  
+  -h, --help            Show this help message and exit.  
     
   -i FILENAME, --input=FILENAME      
   
