@@ -51,9 +51,9 @@ For example:
 Using sliding window to slice the genome into bins in this step  
   
 Options:  
---version              show program's version number and exit  
+--version    show program's version number and exit  
     
--h, --help             show this help message and exit  
+-h, --help    show this help message and exit  
     
 -i FILENAME, --input=FILENAME 
                       Coordinate sorted input file name, accept bam or sam format  
