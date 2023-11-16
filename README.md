@@ -36,7 +36,7 @@ Commands:
   Merging bins from the output file of get_bin step      
   ***get_amr***             
   Used to calculate the probability of imprinting-like AMR and add annotations, users can also exclude unwanted results, such as tissue-specific genes        
-  help (?)  Give detailed help on a specific sub-command  
+  ***help (?)***  Give detailed help on a specific sub-command  
 
  
 ## Step 1  get_bin 
