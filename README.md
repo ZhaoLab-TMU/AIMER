@@ -55,24 +55,22 @@ Options:
     
   -h, --help            show this help message and exit  
     
-  -i FILENAME, --input=FILENAME
-                        Coordinate sorted input file name, accept bam or sam
-                        format  
+  -i FILENAME, --input=FILENAME  
+                        Coordinate sorted input file name, accept bam or sam format  
                           
-  -b BINLENGTH, --bin=BINLENGTH
+  -b BINLENGTH, --bin=BINLENGTH  
                         Length of each bin, default is 300  
                           
-  -s SAMTOOLS_PATH, --samtools_path=SAMTOOLS_PATH
-                        The path of samtools, if samtools is already in the
-                        environment variable, it can be ignored  
+  -s SAMTOOLS_PATH, --samtools_path=SAMTOOLS_PATH  
+                        The path of samtools, if samtools is already in the  environment variable, it can be ignored  
                           
-  -c COVERAGE_CUTOFF, --coverage=COVERAGE_CUTOFF
+  -c COVERAGE_CUTOFF, --coverage=COVERAGE_CUTOFF  
                         Number of reads in each bin, default is 10 [n > 10] 
                           
-  -g GENOME, --genome=GENOME
+  -g GENOME, --genome=GENOME  
                         The reference genenome  
                           
-  -o OUTPUT, --output=OUTPUT
+  -o OUTPUT, --output=OUTPUT  
                         Output bin file, default is bin.bed  
                           
   
@@ -94,25 +92,20 @@ Options:
   -h, --help            show this help message and exit  
     
   -i INPUT_BIN, --input=INPUT_BIN
-                        The input bin bed file, it is the output of get_bin
-                        step  
+                        The input bin bed file, it is the output of get_bin step  
                           
   -r RATIO, --ratio=RATIO
-                        The proportion of minor part, min(m1,m2)/(m1+m2),
-                        default is 0.4 [n >= 0.4]  
+                        The proportion of minor part, min(m1,m2)/(m1+m2), default is 0.4 [n >= 0.4]  
                           
   -d DIFF_SCORE, --diff=DIFF_SCORE
-                        The diff score cutoff between the two part, default is
-                        0.7 [n >= 0.7]  
+                        The diff score cutoff between the two part, default is 0.7 [n >= 0.7]  
                           
-  -g GAP, --gap=GAP     The gap length to extend a merged AMR, default is 600
-                        [n <= 600]  
+  -g GAP, --gap=GAP     The gap length to extend a merged AMR, default is 600 [n <= 600]  
                           
   -c CG, --cg=CG        The cg number of sigle bin, default is 10 [n >= 10]  
     
   -o OUTPUT, --output=OUTPUT
-                        The output of extended bin file, default is
-                        extended.bed  
+                        The output of extended bin file, default is extended.bed  
   
 ==========================  
 ## Step 3  get_amr
@@ -133,30 +126,23 @@ Used to calculate the probability of imprinting-like AMR and add
 annotations  
   
 Options:  
-  --version             >> show program's version number and exit  
+  --version             show program's version number and exit  
     
-  -h, --help            >> show this help message and exit  
+  -h, --help            show this help message and exit  
     
-  -i FILENAME, --input=FILENAME     >> The output of extended region bed of bin_extension step  
+  -i FILENAME, --input=FILENAME      The output of extended region bed of bin_extension step  
                           
-  -t TSS, --tss=TSS     The size of TSS, default is +/- 3k  
+  -t TSS, --tss=TSS    The size of TSS, default is +/- 3k  
     
-  -g GTF, --gtf=GTF     If you want to add TSS information or exclude any
-                        gene, please add this option  
+  -g GTF, --gtf=GTF    If you want to add TSS information or exclude any gene, please add this option  
                           
-  -e EXCLUDED_LIST, --excluded_list=EXCLUDED_LIST
-                        Provide a gene list to enforce exclude that from the
-                        output files, each line is a single gene, only applies
-                        when used with -g option 
+  -e EXCLUDED_LIST, --excluded_list=EXCLUDED_LIST  
+                    Provide a gene list to enforce exclude that from the output files, each line is a single gene, only applies when used with -g option 
                           
-  -k KNOWN_DMR, --known_dmr=KNOWN_DMR
-                        Known dmr bed file, which must contain chr, start, end
-                        and name four columns, the first line need start with
-                        "#" if the bed file contain header line  
+  -k KNOWN_DMR, --known_dmr=KNOWN_DMR  
+                Known dmr bed file, which must contain chr, start, end and name four columns, the first line need start with "#" if the bed file contain header line  
                           
-  -o OUTPUT, --output=OUTPUT
-                        out put file name prefix, default output name is
-                        AMR.anno.bed  
+  -o OUTPUT, --output=OUTPUT    out put file name prefix, default output name is AMR.anno.bed  
   
 Contacts and bug reports  
 ==========================  
