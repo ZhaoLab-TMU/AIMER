@@ -169,6 +169,12 @@ Options:
   
 
 ## Code example（with example data in *test* file）
+Test shell script *test.sh*  
+Test input file *test_sorted.bam*  
+Test genome sequence file *test_genome.fa*   
+Test genome annotation file *test_genome.gtf*  
+Test exclud gene list *extended.bed*  
+Test known DMR bed file *test_known.bed*  
 ####   1st step, get_bin
 AIMER get_bin -i test_sorted.bam -g test_genome.fa -o bin.bed
 
