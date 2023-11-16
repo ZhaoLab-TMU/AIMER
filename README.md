@@ -57,27 +57,27 @@ Options:
     
 -i FILENAME, --input=FILENAME  
 
-                      Coordinate sorted input file name, accept bam or sam format  
+Coordinate sorted input file name, accept bam or sam format  
                           
 -b BINLENGTH, --bin=BINLENGTH  
 
-                      Length of each bin, default is 300  
+Length of each bin, default is 300  
                           
 -s SAMTOOLS_PATH, --samtools_path=SAMTOOLS_PATH  
 
-                      The path of samtools, if samtools is already in the  environment variable, it can be ignored  
+The path of samtools, if samtools is already in the  environment variable, it can be ignored  
                           
 -c COVERAGE_CUTOFF, --coverage=COVERAGE_CUTOFF  
 
-                      Number of reads in each bin, default is 10 [n > 10] 
+Number of reads in each bin, default is 10 [n > 10] 
                           
 -g GENOME, --genome=GENOME  
 
-                      The reference genenome  
+The reference genenome  
                           
 -o OUTPUT, --output=OUTPUT  
 
-                      Output bin file, default is bin.bed  
+Output bin file, default is bin.bed  
                           
 
 ## Step 2  bin_extension 
