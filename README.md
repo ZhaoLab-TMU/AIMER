@@ -1,4 +1,6 @@
 # AIMER
+By using sample-specific whole genome bisulfite sequencing (WGBS) methylome and its associating heterozygous SNP information, sample-specific allelic methylated regions (AMRs) could be detected. However, the approach has two major practical limitations. First, sample-specific heterozygous SNP information is not always available, and it is possible that some AMRs naturally contain no heterozygous SNP information in a certain study. Second, studies by using sample-specific methylome and SNP information can only detect undistinguished AMRs.
+
 The AIMER is a computational software package for identifying imprinting-like allele-specific methylated regions (imprinting-like AMRs) from bisulfite sequencing data (WGBS). AIMER supports alignment BAM/SAM files as input files and is not SNP dependent for figuring out AMR and calculating the likelihood that the region is comparable to the imprinting AMR in a single sample. AIMER contains three sub-commands, get_bin, bin_extension and get_amr.  
 
 Release AIMER 0.1
