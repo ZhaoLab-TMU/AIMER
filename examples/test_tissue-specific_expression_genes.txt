@@ -1,3 +1,0 @@
-Tissue	Gene
-Lung	Pnpt1,Inpp5f,Arap2
-Colon	Rbfox2,Arap,Gpr141,Pnpt12
