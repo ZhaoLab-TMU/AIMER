@@ -22,16 +22,16 @@ AIMER contains three sub-commands: get_bin, bin_extension and get_amr. You can a
 
 $ AIMER --help  
 Usage:  
-    AIMER COMMAND [ARGS...]  
-    AIMER help COMMAND  
+>AIMER COMMAND [ARGS...]  
+>AIMER help COMMAND  
 
 Options:  
-  -h, --help  show this help message and exit  
+>-h, --help  show this help message and exit  
 
 Commands:  
-  get_bin        Using a sliding window to slice the genome into bins.  
-  bin_extension  Extending the adjacent bins from the output of get_bin and merges them into a longer region.  
-  get_amr        Used to calculate the probability of imprinting-like AMR and add annotations, such as the corresponding gene(s), the known imprinted DMR, and the tissues where the corresponding gene(s) may be specifically expressed. Users can also optionally remove the corresponding AMR based on tissue-specific annotations.  
+>get_bin        Using a sliding window to slice the genome into bins.  
+>bin_extension  Extending the adjacent bins from the output of get_bin and merges them into a longer region.  
+>get_amr        Used to calculate the probability of imprinting-like AMR and add annotations, such as the corresponding gene(s), the known imprinted DMR, and the tissues where the corresponding gene(s) may be specifically expressed. Users can also optionally remove the corresponding AMR based on tissue-specific annotations.  
   help (?)       give detailed help on a specific sub-command.  
 
 Step 1 get_bin  
