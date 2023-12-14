@@ -68,7 +68,7 @@ Options:
 ```
 
 ### Output format in get_bin
-The output file of this step contains the information of the sequences from the two groups, the columns included in the output file refer to the description of the file ./examples/[test.AIMER.bin.bed](#test.AIMER.bin.bed)
+The output file of this step contains the information of the sequences from the two groups, the columns included in the output file refer to the description of the file ./examples/[test.AIMER.bin.bed](#test.AIMER.bin.bed).
 
 
 ##  Step 2 bin_extension
@@ -104,7 +104,7 @@ Options:
 ```
 
 ### Output format in bin_extension 
-The merged file is in bed format, the columns included in the output file refer to the description of the file ./examples/test.AIMER.extended.bed.  
+The merged file is in bed format, the columns included in the output file refer to the description of the file ./examples/[test.AIMER.extended.bed](#test.AIMER.extended.bed).  
 
 
 ##  Step 3 get_amr
@@ -170,7 +170,7 @@ Options:
     *  Aorta, Bladder, Brain, Brown Adipose, Diaphragm, Gonadal Adipose, Heart, Heart And Aorta, Kidney, Large Intestine, Limb Muscle, Liver, Lung, Mammary Gland, Marrow, Mesenteric Adipose, Organogenesis, Pancreas, Skin, Spleen, Subcutaneous Adipose, Thymus, Tongue, Trachea, Trachea Smooth Muscle, Uterus.
 
 ### Output format in get_amr 
-The columns included in the output file refer to the description of the file ./examples/test.AIMER.AMR.anno.bed.  
+The columns included in the output file refer to the description of the file ./examples/[test.AIMER.AMR.anno.bed](#test.AIMER.AMR.anno.bed).  
 
 
 #  File description（see ./examples/）
@@ -201,7 +201,7 @@ The example data includes sequencing data for intervals in the mouse genome from
     *  cytosine_count_in_CG: The number of CGs in a single bin.
     *  alpha: The probability of a read originating from group 1 in a single region.
 
-7. test.AIMER.extended.bed: Output file of AIMER bin_extension step. AIMER extends the adjacent bins from the output of get_bin and merges them into a longer region, and the region contains the following columns:
+7. test.AIMER.extended.bed<span id='test.AIMER.extended.bed'/>: Output file of AIMER bin_extension step. AIMER extends the adjacent bins from the output of get_bin and merges them into a longer region, and the region contains the following columns:
     *  #Chr: Chromosome name.
     *  Start: Start coordinate on the chromosome for the sequence considered.
     *  End: End coordinate on the chromosome or scaffold for the sequence considered.
@@ -210,7 +210,7 @@ The example data includes sequencing data for intervals in the mouse genome from
     *  Max_cg: Each bin has a specific CG count, and Max_CG represents the CG count of the bin with the highest CG content in a merged region.
     *  Ratio: The ratio of the count of the minor group in Group 1 and Group 2 divided by the total number of the two groups in a merged region.
 
-8. test.AIMER.AMR.anno.bed: Output file of AIMER get_amr step. Basically, AIMER calculates the similarity score between the obtained region and the known imprinted DMR from the output of bin_extension. If a GTF annotation file is provided, the program will annotate the AMR to the corresponding genes, and if the bed file of the known imprinted DMR is provided, the software will also annotate whether the AMR is overlapping with the known AMR. If a list of tissue-specific genes is provided, the program will mark the corresponding tissue in the AMR. The output file contains the following columns:
+8. test.AIMER.AMR.anno.bed<span id='test.AIMER.AMR.anno.bed'/>: Output file of AIMER get_amr step. Basically, AIMER calculates the similarity score between the obtained region and the known imprinted DMR from the output of bin_extension. If a GTF annotation file is provided, the program will annotate the AMR to the corresponding genes, and if the bed file of the known imprinted DMR is provided, the software will also annotate whether the AMR is overlapping with the known AMR. If a list of tissue-specific genes is provided, the program will mark the corresponding tissue in the AMR. The output file contains the following columns:
     *  #Chr: Chromosome name.
     *  Start: Start coordinate on the chromosome for the sequence considered.
     *  End: End coordinate on the chromosome or scaffold for the sequence considered.
