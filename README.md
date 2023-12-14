@@ -35,10 +35,11 @@ Commands:
   bin_extension  Extending the adjacent bins from the output of get_bin and merges them into a longer region.  
   get_amr        Used to calculate the probability of imprinting-like AMR and add annotations, such as the corresponding gene(s), the known imprinted DMR, and the tissues where the corresponding gene(s) may be specifically expressed. Users can also optionally remove the corresponding AMR based on tissue-specific annotations.  
   help (?)       give detailed help on a specific sub-command.  
+```
 
 ## Step 1 get_bin  
 The get_bin step utilize a sliding window to split the chromosome into continuous bins, then the reads are divided into two groups by the EM algorithm in each bin. 
-```
+
 ```shell
 $ AIMER get_bin --help  
 Usage:
@@ -68,18 +69,18 @@ Options:
 
 ### Output format in get_bin
 The output file of this step contains the information of the sequences from the two groups, and the output file contains the following columns:
-  #chr: Chromosome name.
-  start: Start coordinate on the chromosome for the sequence considered.
-  end: End coordinate on the chromosome or scaffold for the sequence considered.
-  m1: The average methylation levels of sequences from group 1.
-  m2: The average methylation levels of sequences from group 2.
-  m1_read: The number of sequences originating from group 1.
-  m2_read: The number of sequences originating from group 2.
-  alpha1: The ratio of the count of the minor group in Group 1 and Group 2 divided by the total number of the two groups.
-  ave_methylation_level: The average methylation level of the region separated by the sliding window.
-  diff: The difference between the average methylation levels of the sequences in the two groups.
-  cytosine_count_in_CG: The number of CGs in a single bin.
-  alpha: The probability of a read originating from group 1 in a single region.
+  *  #chr: Chromosome name.
+  *  start: Start coordinate on the chromosome for the sequence considered.
+  *  end: End coordinate on the chromosome or scaffold for the sequence considered.
+  *  m1: The average methylation levels of sequences from group 1.
+  *  m2: The average methylation levels of sequences from group 2.
+  *  m1_read: The number of sequences originating from group 1.
+  *  m2_read: The number of sequences originating from group 2.
+  *  alpha1: The ratio of the count of the minor group in Group 1 and Group 2 divided by the total number of the two groups.
+  *  ave_methylation_level: The average methylation level of the region separated by the sliding window.
+  *  diff: The difference between the average methylation levels of the sequences in the two groups.
+  *  cytosine_count_in_CG: The number of CGs in a single bin.
+  *  alpha: The probability of a read originating from group 1 in a single region.
 
 ##  Step 2 bin_extension
 The bin_extension step uses the output file from get_bin to merge the short bin into a longer contiguous region. Only reasonable and adjacent bins can be merged into a region.
