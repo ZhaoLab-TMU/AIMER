@@ -68,7 +68,7 @@ Options:
 ```
 
 ### Output format in get_bin
-The output file of this step contains the information of the sequences from the two groups, the columns included in the output file refer to the description of the file ./examples/test.AIMER.bin.bed.  
+The output file of this step contains the information of the sequences from the two groups, the columns included in the output file refer to the description of the file [./examples/test.AIMER.bin.bed](6. test.AIMER.bin.bed)  
 
 
 ##  Step 2 bin_extension
