@@ -4,50 +4,48 @@ Genomic imprinting is a vital phenomenon during mammalian growth and development
 
 However, the AIMER is a SNP-independent computational software package for identifying imprinting-like allele-specific methylated regions (imprinting-like AMRs) from bisulfite sequencing data (WGBS). AIMER supports alignment BAM/SAM files as input files and is not SNP dependent for figuring out AMR and calculating the likelihood that the region is comparable to the imprinting AMR in a single sample. AIMER contains three sub-commands, get_bin, bin_extension and get_amr.
 
-The latest version is 0.1, and it is compatible with Python 3.9+. The Python source code for our project is now publicly available on both GitHub (https://github.com/ZhaoLab-TMU/AIMER) and Gitee (https://gitee.com/zhaolab_tmu/AIMER).
+The latest version is 0.1.1, and it is compatible with Python 3.9+. The Python source code for our project is now publicly available on both GitHub (https://github.com/ZhaoLab-TMU/AIMER) and Gitee (https://gitee.com/zhaolab_tmu/AIMER).
 
 ==========================
-# Install AIMER 0.1
-pip3 install AIMER-0.1.tar.gz
+# Install AIMER
+pip3 install AIMER-0.1.1.tar.gz
 
 # Required libraries
-numpy-1.22.3
-gtfparse-1.2.1
-pandas-1.4.2
-pyfasta-0.5.2
-pybedtools>=0.9.0
-pyranges>=0.0.115
-gtfparse>=1.2.1
+numpy-1.22.3  
+gtfparse-1.2.1  
+pandas-1.4.2  
+pyfasta-0.5.2  
+pybedtools>=0.9.0  
+pyranges>=0.0.115  
+gtfparse>=1.2.1  
 
-Usage
-==========================
+# Usage  
 AIMER contains three sub-commands: get_bin, bin_extension and get_amr. You can also use AIMER --help to see the sub-commands included. Moreover, if you want to find out how to use each sub-command, please use AIMER <sub-command> --help command, for example: AIMER get_bin --help.
 
-$ AIMER --help
-Usage:
-    AIMER COMMAND [ARGS...]
-    AIMER help COMMAND
+$ AIMER --help  
+Usage:  
+    AIMER COMMAND [ARGS...]  
+    AIMER help COMMAND  
 
-Options:
-  -h, --help  show this help message and exit
+Options:  
+  -h, --help  show this help message and exit  
 
-Commands:
-  get_bin        Using a sliding window to slice the genome into bins.
+Commands:  
+  get_bin        Using a sliding window to slice the genome into bins.  
   bin_extension  Extending the adjacent bins from the output of get_bin and
-                 merges them into a longer region.
+                 merges them into a longer region.  
   get_amr        Used to calculate the probability of imprinting-like AMR and
                  add annotations, such as the corresponding gene(s), the known
                  imprinted DMR, and the tissues where the corresponding
                  gene(s) may be specifically expressed. Users can also
                  optionally remove the corresponding AMR based on tissue-
-                 specific annotations.
-  help (?)       give detailed help on a specific sub-command.
+                 specific annotations.  
+  help (?)       give detailed help on a specific sub-command.  
 
-Step 1 get_bin
-==========================
+Step 1 get_bin  
 The get_bin step utilize a sliding window to split the chromosome into continuous bins, then the reads are divided into two groups by the EM algorithm in each bin. 
 
-$ AIMER get_bin --help
+$ AIMER get_bin --help  
 Usage:
     Usage: AIMER get_bin <-i filename> <-g ref_genome> <-b 300> <-c 10> <-o output>
     For example: AIMER get_bin -i input.bam -b 300 -c 10 -g mm9.fa -o bin.bed
