@@ -180,7 +180,10 @@ Options:
 ```
 ###  Note: 
 1. If you use "human" or "mouse" in the --annotation parameter, the default tissue-specific expression gene table is obtained from the MSigDB cell type signature gene sets file. You can find the corresponding file in ./AIMER/resources/README.md.
-2. The tissues included in human default annotation file are as follows: Adrenal, Bone Marrow, Cerebellum, Cerebrum, Cord Blood, Ctx, Duodenal, Esophageal, Esophagus, Eye, Gastric, Heart, Intestine, Kidney, Liver, Lung, Midbrain Neurotypes, Muscle, Olfactory Neuroepithelium, Ovary, Pancreas, Pfc, Placenta, Spleen, Thymus. The tissues included in mouse default annotation file are as follows: Aorta, Bladder, Brain, Brown Adipose, Diaphragm, Gonadal Adipose, Heart, Heart And Aorta, Kidney, Large Intestine, Limb Muscle, Liver, Lung, Mammary Gland, Marrow, Mesenteric Adipose, Organogenesis, Pancreas, Skin, Spleen, Subcutaneous Adipose, Thymus, Tongue, Trachea, Trachea Smooth Muscle, Uterus.
+2. The tissues included in human default annotation file are as follows:
+    *  Adrenal, Bone Marrow, Cerebellum, Cerebrum, Cord Blood, Ctx, Duodenal, Esophageal, Esophagus, Eye, Gastric, Heart, Intestine, Kidney, Liver, Lung, Midbrain Neurotypes, Muscle, Olfactory Neuroepithelium, Ovary, Pancreas, Pfc, Placenta, Spleen, Thymus.
+3. The tissues included in mouse default annotation file are as follows:
+    *  Aorta, Bladder, Brain, Brown Adipose, Diaphragm, Gonadal Adipose, Heart, Heart And Aorta, Kidney, Large Intestine, Limb Muscle, Liver, Lung, Mammary Gland, Marrow, Mesenteric Adipose, Organogenesis, Pancreas, Skin, Spleen, Subcutaneous Adipose, Thymus, Tongue, Trachea, Trachea Smooth Muscle, Uterus.
 
 
 #  File description（see ./examples/）
