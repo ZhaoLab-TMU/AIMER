@@ -187,7 +187,7 @@ The example data includes sequencing data for intervals in the mouse genome from
 
 5. test_tissue_annotation.txt: Your own file for possible tissue-specific AMR annotation; if you provide your own files please note that the files contain Tissue and Gene columns, if there are more than one gene in the gene column, please separate them with comma.
 
-6. <span id='test.AIMER.bin.bed'/>: Output file of AIMER get_bin step. AIMER uses a sliding window to separate the bam into a single region (bin), and the output file contains the following columns: 
+6. test.AIMER.bin.bed<span id='test.AIMER.bin.bed'/>: Output file of AIMER get_bin step. AIMER uses a sliding window to separate the bam into a single region (bin), and the output file contains the following columns: 
     *  #chr: Chromosome name.
     *  start: Start coordinate on the chromosome for the sequence considered.
     *  end: End coordinate on the chromosome or scaffold for the sequence considered.
