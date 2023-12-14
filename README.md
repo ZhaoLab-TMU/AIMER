@@ -1,12 +1,10 @@
 # Introduction
-==========================
 Genomic imprinting is a vital phenomenon during mammalian growth and development, which refers to genes that are preferentially expressed from either paternal or maternal allele. In mammals, such imprinting gene expression was identified to be regulated by allele-specific methylation (ASM) in some cis-acting regulatory regions in almost all of the known cases.Aberrant DNA methylation of allelic methylated regions (AMRs) is associated with certain diseases. By using sample-specific whole genome bisulfite sequencing (WGBS) methylome and its associating heterozygous SNP information, sample-specific AMRs could be detected.
 
 However, the AIMER is a SNP-independent computational software package for identifying imprinting-like allele-specific methylated regions (imprinting-like AMRs) from bisulfite sequencing data (WGBS). AIMER supports alignment BAM/SAM files as input files and is not SNP dependent for figuring out AMR and calculating the likelihood that the region is comparable to the imprinting AMR in a single sample. AIMER contains three sub-commands, get_bin, bin_extension and get_amr.
 
 The latest version is 0.1.1, and it is compatible with Python 3.9+. The Python source code for our project is now publicly available on both GitHub (https://github.com/ZhaoLab-TMU/AIMER) and Gitee (https://gitee.com/zhaolab_tmu/AIMER).
 
-==========================
 # Install AIMER
 pip3 install AIMER-0.1.1.tar.gz
 
