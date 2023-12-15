@@ -266,13 +266,5 @@ AIMER get_amr -i test.AIMER.extended.bed -o AMR.8 -g test_genome.gtf -a test_tis
 AIMER get_amr -i test.AIMER.extended.bed -o AMR.9 -g test_genome.gtf -a test_tissue-specific_expression_genes.txt -k test_known.bed -e "Colon"
 ```
 
-Contacts and bug reports
-==========================
-ZhaoLab-TMU
-zhaolab_tmu@163.com
-
-Copyright and License Information
-==========================
-Copyright (C) 
-
-Current Authors: ZhaoLab-TMU
+# Seeking help
+If you have questions about AIMER, you may sign up the mailing list and then send the questions to zhaolab_tmu@163.com.
